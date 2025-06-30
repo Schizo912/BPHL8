@@ -402,7 +402,7 @@ th.nomor, td.nomor {
     // Google Satellite (mirip Google Earth)
 const googleSatLayer = new ol.layer.Tile({
   source: new ol.source.XYZ({
-    url: 'httpss://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
+    url: 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
     attributions: '© Google'
   }),
   visible: false // default tidak tampil
@@ -411,7 +411,7 @@ map.addLayer(googleSatLayer);
 
 const esriSatLayer = new ol.layer.Tile({
   source: new ol.source.XYZ({
-    url: 'httpss://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     attributions: 'Tiles © Esri'
   }),
   visible: false
