@@ -402,7 +402,7 @@ th.nomor, td.nomor {
     // Google Satellite (mirip Google Earth)
 const googleSatLayer = new ol.layer.Tile({
   source: new ol.source.XYZ({
-    url: 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
+    url: 'httpss://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
     attributions: '© Google'
   }),
   visible: false // default tidak tampil
@@ -411,7 +411,7 @@ map.addLayer(googleSatLayer);
 
 const esriSatLayer = new ol.layer.Tile({
   source: new ol.source.XYZ({
-    url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    url: 'httpss://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     attributions: 'Tiles © Esri'
   }),
   visible: false
@@ -686,7 +686,7 @@ function toggleLayerWMS(layerName, layerVarName) {
 
   window[layerVarName] = new ol.layer.Tile({
     source: new ol.source.TileWMS({
-      url: 'http://34.168.169.72:8080/geoserver/BPHL8/wms',
+      url: 'https://34.168.169.72:8080/geoserver/BPHL8/wms',
       params: {
         'LAYERS': layerName,
         'TILED': true
@@ -731,7 +731,7 @@ const provMapping = {
 
       if (!prov) return;
 
-      const url = 'http://34.168.169.72:8080/geoserver/BPHL8/ows' +
+      const url = 'https://34.168.169.72:8080/geoserver/BPHL8/ows' +
                   '?service=WFS&version=1.0.0&request=GetFeature' +
                   '&typeName=BPHL8:FUNGHTN_' + prov +
                   '&outputFormat=application/json' +
@@ -794,7 +794,7 @@ const provMapping = {
 
       currentLayer = new ol.layer.Image({
         source: new ol.source.ImageWMS({
-          url: 'http://34.168.169.72:8080/geoserver/BPHL8/wms',
+          url: 'https://34.168.169.72:8080/geoserver/BPHL8/wms',
           params: {
             'LAYERS': layersParam,
             'TILED': true,
@@ -824,7 +824,7 @@ function zoomToWilayah(jenis, namaWilayah) {
     cql = `WADMPR ILIKE '${namaWilayah}'`;
   }
 
-  const url = 'http://34.168.169.72:8080/geoserver/BPHL8/ows' +
+  const url = 'https://34.168.169.72:8080/geoserver/BPHL8/ows' +
               '?service=WFS&version=1.1.0&request=GetFeature' +
               '&typename=' + typeName +
               '&outputFormat=application/json' +
@@ -894,7 +894,7 @@ function zoomToSelected(jenis) {
 
 function zoomToWilker() {
   const layerName = 'BPHL8:FUNGHTN_WILKER'; // Pastikan layer yang dipilih adalah FUNGHTN_WILKER
-  const url = `http://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typename=${layerName}&outputFormat=application/json`;
+  const url = `https://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typename=${layerName}&outputFormat=application/json`;
 
   fetch(url)
     .then(r => r.json())
@@ -951,7 +951,7 @@ function toggleFungHutn() {
   // Buat layer WMS untuk Fungsi Kawasan Hutan
   fungHutnLayer = new ol.layer.Image({
     source: new ol.source.ImageWMS({
-      url: 'http://34.168.169.72:8080/geoserver/BPHL8/wms',
+      url: 'https://34.168.169.72:8080/geoserver/BPHL8/wms',
       params: {
         'LAYERS': layersParam,
         'TILED': true,
@@ -968,7 +968,7 @@ function toggleFungHutn() {
   showLegend(
     'funghutn',
     'Fungsi Kawasan Hutan',
-    `http://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=${layersParam}`
+    `https://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=${layersParam}`
   );
 
   // Tampilkan rekap jika checkbox dicentang
@@ -1003,7 +1003,7 @@ function togglePBPHH() {
   let cql = `WADMPR='${provName}'`;
   if (kab) cql += ` AND WADMKK='${kab}'`;
 
-  const wfsUrl = 'http://34.168.169.72:8080/geoserver/BPHL8/ows?' +
+  const wfsUrl = 'https://34.168.169.72:8080/geoserver/BPHL8/ows?' +
     'service=WFS&version=1.1.0&request=GetFeature&typename=BPHL8:PBPHH_BPHL8&' +
     'outputFormat=application/json&CQL_FILTER=' + encodeURIComponent(cql);
 
@@ -1075,7 +1075,7 @@ function toggleKHDTK() {
 
   khdtkLayer = new ol.layer.Image({
     source: new ol.source.ImageWMS({
-      url: 'http://34.168.169.72:8080/geoserver/BPHL8/wms',
+      url: 'https://34.168.169.72:8080/geoserver/BPHL8/wms',
       params: {
         'LAYERS': 'BPHL8:KHDTK_BPHL8',
         'TILED': true,
@@ -1091,7 +1091,7 @@ function toggleKHDTK() {
   showLegend(
     'khdtk',
     'KHDTK',
-    'http://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:KHDTK_BPHL8'
+    'https://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:KHDTK_BPHL8'
   );
 
   // --- 2. Fetch data WFS untuk rekap tabel ---
@@ -1107,7 +1107,7 @@ function rekapKHDTK(provName, kab) {
   let cql = `WADMPR='${provName}'`;
   if (kab) cql += ` AND WADMKK='${kab}'`;
 
-  const wfsUrl = `http://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=BPHL8:KHDTK_BPHL8&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
+  const wfsUrl = `https://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=BPHL8:KHDTK_BPHL8&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
   fetch(wfsUrl)
     .then(r => r.json())
     .then(geojson => {
@@ -1174,7 +1174,7 @@ function toggleFOLUJL() {
 
   foluJL_Layer = new ol.layer.Image({
     source: new ol.source.ImageWMS({
-      url: 'http://34.168.169.72:8080/geoserver/BPHL8/wms',
+      url: 'https://34.168.169.72:8080/geoserver/BPHL8/wms',
       params: {
         'LAYERS': 'BPHL8:FOLU_JL_BPHL8',
         'TILED': true,
@@ -1190,7 +1190,7 @@ function toggleFOLUJL() {
   showLegend(
     'folujl',
     'FOLU JL',
-    'http://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:FOLU_JL_BPHL8'
+    'https://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:FOLU_JL_BPHL8'
   );
 
   rekapLuasByKolom({
@@ -1227,7 +1227,7 @@ function toggleKHDPK() {
 
   khdpkLayer = new ol.layer.Tile({
     source: new ol.source.TileWMS({
-      url: 'http://34.168.169.72:8080/geoserver/BPHL8/wms',
+      url: 'https://34.168.169.72:8080/geoserver/BPHL8/wms',
       params: {
         'LAYERS': 'BPHL8:KHDPK_BPHL8',
         'TILED': true,
@@ -1243,7 +1243,7 @@ function toggleKHDPK() {
   showLegend(
     'khdpk',
     'KHDPK',
-    'http://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:KHDPK_BPHL8'
+    'https://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:KHDPK_BPHL8'
   );
 
   rekapLuasByKolom({
@@ -1281,7 +1281,7 @@ function togglePPKH() {
 
   ppkhLayer = new ol.layer.Image({
     source: new ol.source.ImageWMS({
-      url: 'http://34.168.169.72:8080/geoserver/BPHL8/wms',
+      url: 'https://34.168.169.72:8080/geoserver/BPHL8/wms',
       params: {
         'LAYERS': 'BPHL8:PPKH_OP_BPHL8',
         'TILED': true,
@@ -1297,7 +1297,7 @@ function togglePPKH() {
   showLegend(
     'ppkh',
     'PPKH OP',
-    'http://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:PPKH_OP_BPHL8'
+    'https://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:PPKH_OP_BPHL8'
   );
 
   rekapPPKH(provName, kab);
@@ -1312,7 +1312,7 @@ function rekapPPKH(provName, kab) {
   let cql = `WADMPR='${provName}'`;
   if (kab) cql += ` AND WADMKK='${kab}'`;
 
-  const wfsUrl = `http://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=BPHL8:PPKH_OP_BPHL8&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
+  const wfsUrl = `https://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=BPHL8:PPKH_OP_BPHL8&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
   fetch(wfsUrl)
     .then(r => r.json())
     .then(geojson => {
@@ -1388,7 +1388,7 @@ function togglePPHKM() {
 
   pphkmLayer = new ol.layer.Image({
     source: new ol.source.ImageWMS({
-      url: 'http://34.168.169.72:8080/geoserver/BPHL8/wms',
+      url: 'https://34.168.169.72:8080/geoserver/BPHL8/wms',
       params: {
         'LAYERS': 'BPHL8:PPHKM_BPHL8',
         'TILED': true,
@@ -1404,7 +1404,7 @@ function togglePPHKM() {
   showLegend(
     'pphkm',
     'PPHKM',
-    'http://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:PPHKM_BPHL8'
+    'https://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:PPHKM_BPHL8'
   );
 
   rekapPPHKM(provName, kab);
@@ -1419,7 +1419,7 @@ function rekapPPHKM(provName, kab) {
   let cql = `WADMPR='${provName}'`;
   if (kab) cql += ` AND WADMKK='${kab}'`;
 
-  const wfsUrl = `http://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=BPHL8:PPHKM_BPHL8&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
+  const wfsUrl = `https://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=BPHL8:PPHKM_BPHL8&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
   fetch(wfsUrl)
     .then(r => r.json())
     .then(geojson => {
@@ -1493,7 +1493,7 @@ function togglePPHD() {
 
   pphdLayer = new ol.layer.Image({
     source: new ol.source.ImageWMS({
-      url: 'http://34.168.169.72:8080/geoserver/BPHL8/wms',
+      url: 'https://34.168.169.72:8080/geoserver/BPHL8/wms',
       params: {
         'LAYERS': 'BPHL8:PPHD_BPHL8',
         'TILED': true,
@@ -1509,7 +1509,7 @@ function togglePPHD() {
   showLegend(
     'pphd',
     'PPHD',
-    'http://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:PPHD_BPHL8'
+    'https://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:PPHD_BPHL8'
   );
 
   rekapPPHD(provName, kab);
@@ -1524,7 +1524,7 @@ function rekapPPHD(provName, kab) {
   let cql = `WADMPR='${provName}'`;
   if (kab) cql += ` AND WADMKK='${kab}'`;
 
-  const wfsUrl = `http://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=BPHL8:PPHD_BPHL8&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
+  const wfsUrl = `https://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=BPHL8:PPHD_BPHL8&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
   fetch(wfsUrl)
     .then(r => r.json())
     .then(geojson => {
@@ -1597,7 +1597,7 @@ function togglePKK() {
 
   pkkLayer = new ol.layer.Image({
     source: new ol.source.ImageWMS({
-      url: 'http://34.168.169.72:8080/geoserver/BPHL8/wms',
+      url: 'https://34.168.169.72:8080/geoserver/BPHL8/wms',
       params: {
         'LAYERS': 'BPHL8:PKK_BPHL8',
         'TILED': true,
@@ -1613,7 +1613,7 @@ function togglePKK() {
   showLegend(
     'pkk',
     'PKK',
-    'http://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:PKK_BPHL8'
+    'https://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:PKK_BPHL8'
   );
 
   rekapPKK(provName, kab);
@@ -1628,7 +1628,7 @@ function rekapPKK(provName, kab) {
   let cql = `WADMPR='${provName}'`;
   if (kab) cql += ` AND WADMKK='${kab}'`;
 
-  const wfsUrl = `http://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=BPHL8:PKK_BPHL8&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
+  const wfsUrl = `https://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=BPHL8:PKK_BPHL8&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
   fetch(wfsUrl)
     .then(r => r.json())
     .then(geojson => {
@@ -1701,7 +1701,7 @@ function togglePIPPIB2025() {
 
   pippibLayer = new ol.layer.Image({
     source: new ol.source.ImageWMS({
-      url: 'http://34.168.169.72:8080/geoserver/BPHL8/wms',
+      url: 'https://34.168.169.72:8080/geoserver/BPHL8/wms',
       params: {
         'LAYERS': 'BPHL8:PIPPIB2025_BPHL8',
         'TILED': true,
@@ -1717,7 +1717,7 @@ function togglePIPPIB2025() {
   showLegend(
     'pippib2025',
     'PIPPIB 2025',
-    'http://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:PIPPIB2025_BPHL8'
+    'https://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:PIPPIB2025_BPHL8'
   );
 
   rekapLuasByKolom({
@@ -1752,7 +1752,7 @@ function togglePIAPS9() {
 
   piapsLayer = new ol.layer.Image({
     source: new ol.source.ImageWMS({
-      url: 'http://34.168.169.72:8080/geoserver/BPHL8/wms',
+      url: 'https://34.168.169.72:8080/geoserver/BPHL8/wms',
       params: {
         'LAYERS': 'BPHL8:PIAPS9_BPHL8',
         'TILED': true,
@@ -1768,7 +1768,7 @@ function togglePIAPS9() {
   showLegend(
     'piaps9',
     'PIAPS9',
-    'http://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:PIAPS9_BPHL8'
+    'https://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:PIAPS9_BPHL8'
   );
 
   rekapPIAPS(provName, kab);
@@ -1783,7 +1783,7 @@ function rekapPIAPS(provName, kab) {
   let cql = `WADMPR='${provName}'`;
   if (kab) cql += ` AND WADMKK='${kab}'`;
 
-  const wfsUrl = `http://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=BPHL8:PIAPS9_BPHL8&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
+  const wfsUrl = `https://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=BPHL8:PIAPS9_BPHL8&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
   fetch(wfsUrl)
     .then(r => r.json())
     .then(geojson => {
@@ -1851,7 +1851,7 @@ function toggleHAJateng() {
 
   haJatengLayer = new ol.layer.Image({
     source: new ol.source.ImageWMS({
-      url: 'http://34.168.169.72:8080/geoserver/BPHL8/wms',
+      url: 'https://34.168.169.72:8080/geoserver/BPHL8/wms',
       params: {
         'LAYERS': 'BPHL8:HUTAN_ADAT_JATENG',
         'TILED': true,
@@ -1867,11 +1867,11 @@ function toggleHAJateng() {
   showLegend(
     'ha-jateng',
     'HUTAN ADAT',
-    'http://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:HUTAN_ADAT_JATENG'
+    'https://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:HUTAN_ADAT_JATENG'
   );
 
   // Ambil data WFS untuk rekap tabel
-  const wfsUrl = `http://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=BPHL8:HUTAN_ADAT_JATENG&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
+  const wfsUrl = `https://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=BPHL8:HUTAN_ADAT_JATENG&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
   fetch(wfsUrl)
     .then(r => r.json())
     .then(geojson => {
@@ -1958,7 +1958,7 @@ function toggleIphps() {
 
   iphpsLayer = new ol.layer.Image({
     source: new ol.source.ImageWMS({
-      url: 'http://34.168.169.72:8080/geoserver/BPHL8/wms',
+      url: 'https://34.168.169.72:8080/geoserver/BPHL8/wms',
       params: {
         'LAYERS': 'BPHL8:IPHPS_BPHL8',
         'TILED': true,
@@ -1974,7 +1974,7 @@ function toggleIphps() {
   showLegend(
     'iphps',
     'IPHPS',
-    'http://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:IPHPS_BPHL8'
+    'https://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:IPHPS_BPHL8'
   );
 
   rekapIphps(provName, kab);
@@ -1989,7 +1989,7 @@ function rekapIphps(provName, kab) {
   let cql = `WADMPR='${provName}'`;
   if (kab) cql += ` AND WADMKK='${kab}'`;
 
-  const wfsUrl = `http://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=BPHL8:IPHPS_BPHL8&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
+  const wfsUrl = `https://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=BPHL8:IPHPS_BPHL8&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
   fetch(wfsUrl)
     .then(r => r.json())
     .then(geojson => {
@@ -2086,7 +2086,7 @@ function updateLegend() {
     return;
   }
 
-  const legendUrl = `http://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=${layerName}`;
+  const legendUrl = `https://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=${layerName}`;
   document.getElementById('legend-img').src = legendUrl;
 }
 
@@ -2279,13 +2279,13 @@ function updateAllLegendsAndRekap() {
 
   // Update legend URLs
   document.getElementById('legend-img').src =
-    `http://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:FUNGHTN_WILKER`;
+    `https://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:FUNGHTN_WILKER`;
   document.getElementById('legend-img').src =
-    `http://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:FUNGHTN_${prov}`; 
+    `https://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:FUNGHTN_${prov}`; 
   document.getElementById('legend-khdpk').src =
-    `http://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:KHDPK_BPHL8`;
+    `https://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:KHDPK_BPHL8`;
   document.getElementById('legend-folu').src =
-    `http://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:FOLU_JL_BPHL8`;
+    `https://34.168.169.72:8080/geoserver/BPHL8/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=BPHL8:FOLU_JL_BPHL8`;
 
   // Recap layers for WILKER
  if (prov === 'WILKER') {
@@ -2326,7 +2326,7 @@ function rekapLuasByKolom({ typeNames, label, groupBy, targetDivId }) {
   let cql = `WADMPR='${provName}'`;
   if (kab) cql += ` AND WADMKK='${kab}'`;
 
-  const wfsUrl = `http://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=${typeNames}&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
+  const wfsUrl = `https://34.168.169.72:8080/geoserver/BPHL8/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=${typeNames}&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(cql)}`;
 
   fetch(wfsUrl)
     .then(response => response.json())
